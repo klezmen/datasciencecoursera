@@ -61,11 +61,9 @@ new_Activities <- read.table("activity_labels.txt")
 new_Activities[, 2] = gsub("_", "", new_Activities[, 2])
 Y[,1] = new_Activities[Y[,1], 2]
 names(Y) <- "activity"
-
 # 4. Appropriately labels the data set with descriptive activity names.
 
-
-
+ setnames(new_Activities,c('activityNumber','activityNames'))
 #5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 meanofData<-data.frame(colMeans(allMerged))
 

@@ -64,5 +64,8 @@ names(Y) <- "activity"
 
 # 4. Appropriately labels the data set with descriptive activity names.
 
+
+
+#5. 
 end1<-c("That's all folks, i tried my best!!!")
 end1

@@ -67,5 +67,5 @@ names(Y) <- "activity"
 #5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 meanofData<-data.frame(colMeans(allMerged))
 
-end1<-c("That's all folks, i tried my best!!!")
+end1<-c("That's all folks, thank you for your time")
 end1

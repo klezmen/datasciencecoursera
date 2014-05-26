@@ -28,48 +28,61 @@ You should create one R script called run_analysis.R that does the following. 
 
 
 
+Code Book
 
-GettingAndCleaningData - Project Codebook
-This document describes the steps to run the run_analysis.R file.
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
 
-For the first tidy data set:
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
 
-Set the working directory for the file.
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
 
-Read "x_train.txt" (and store it in "train.set" object), "y_train.txt" (and store it in "train.label" object) and "subject_train.txt" (and store it in "train.subject" object) from "train" file.
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
 
-Read "x_test.txt" (and store it in "test.set" object), "y_test.txt" (and store it in "test.label" object) and "subject_test.txt" (and store it in "test.subject" object) from "test" file.
+tBodyAcc-XYZ
+tGravityAcc-XYZ
+tBodyAccJerk-XYZ
+tBodyGyro-XYZ
+tBodyGyroJerk-XYZ
+tBodyAccMag
+tGravityAccMag
+tBodyAccJerkMag
+tBodyGyroMag
+tBodyGyroJerkMag
+fBodyAcc-XYZ
+fBodyAccJerk-XYZ
+fBodyGyro-XYZ
+fBodyAccMag
+fBodyAccJerkMag
+fBodyGyroMag
+fBodyGyroJerkMag
 
-Merge "train.set" and "test.set" and store it in "merge.set"
+The set of variables that were estimated from these signals are: 
 
-Merge "train.label" and "test.label" and store it in "merge.label"
+mean(): Mean value
+std(): Standard deviation
+mad(): Median absolute deviation 
+max(): Largest value in array
+min(): Smallest value in array
+sma(): Signal magnitude area
+energy(): Energy measure. Sum of the squares divided by the number of values. 
+iqr(): Interquartile range 
+entropy(): Signal entropy
+arCoeff(): Autorregresion coefficients with Burg order equal to 4
+correlation(): correlation coefficient between two signals
+maxInds(): index of the frequency component with largest magnitude
+meanFreq(): Weighted average of the frequency components to obtain a mean frequency
+skewness(): skewness of the frequency domain signal 
+kurtosis(): kurtosis of the frequency domain signal 
+bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.
+angle(): Angle between to vectors.
 
-Merge "train.subject" and "test.subject" and store it in "merge.subject" object.
+Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
 
-Read "features.txt" and store it in "features" object.
+gravityMean
+tBodyAccMean
+tBodyAccJerkMean
+tBodyGyroMean
+tBodyGyroJerkMean
 
-Use regular expressions to get only mean and standard desviation from "features" and store it in "only.mean.std" object.
-
-Subset "merge.set" to get only means and standard desviations information as "only.mean.std" features have and store it in "merge.set2" object.
-
-Add column names to "merge.set2" from "features" subseted by "only.mean.std".
-
-Read "activity_labels.txt" and store it in "activity.label" object.
-
-Get all the activity labels from "activity.label" linked with "merge.label" values and store them in "activity.label2".
-
-Set all the activity labels from "activity.label2" in "merge.label" object.
-
-Add column name "activity" to "merge.label" object.
-
-Add column name "subject" to "merge.subject" object.
-
-Merge "merge.subject", "merge.label" and "merge.set2" into "tidy" object.
-
-Write the "tidy_data_set.txt" data set from "tidy".
-
-For the second tidy data set:
-
-Use ddply (requires "plyr" package) to get the mean of each column grouped by "subject" and "activity" from "tidy" object and store it in "tidy2" object.
-
-Write the "means_tidy.txt" data set from "tidy2".
+The complete list of variables of each feature vector is available in 'features.txt'
